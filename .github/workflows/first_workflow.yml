@@ -1,10 +1,18 @@
+#Name of the GitHub Workflow
 name: First Workflow
+#Method to dispatch the workflow. "Workflow_dispatch" -- manually trigger the workflow
 on: workflow_dispatch
+#Jobs to be performed as part of the workflow.
 jobs:
+#Name of the job being performed
   first-job:
+    #Environment in which the Job has to be run.
     runs-on: ubuntu-latest
+    #Steps to be performed as part of the job
     steps:
+      #Name of the step being performed
       - name: Print Greeting
+      #Instructions to be run as part of the step.
         run: echo "Hello World!"
       - name: Print Goodbye
         run: echo "Workflow Completed. Bye!!"
