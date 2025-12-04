@@ -14,5 +14,9 @@ jobs:
       - name: Print Greeting
       #Instructions to be run as part of the step.
         run: echo "Hello World!"
+      - name: Multi-Line Commands
+        run: |
+             echo "First Command!"
+             echo "Second Command!!"
       - name: Print Goodbye
         run: echo "Workflow Completed. Bye!!"
