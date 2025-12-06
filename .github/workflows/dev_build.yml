@@ -1,7 +1,27 @@
 name: Dev Build and Deploy
 on: push
 jobs:
+  #Job 1 which runs the gradle build and testcases in the project.
   Build_and_Test:
+    #The GitHub Action doesn't run on the repository. It runs on the Virtual runner environment.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        #Using Custom action for checking out the code to the GitHub Runner
+        uses: actions/Checkout@v3
+      - name: Install Java
+        #Installing the specified version & distribution of Java in the runner environment
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+      - name: Gradle Build
+        run: ./gradlew clean build
+  #Job 2 which is used to deploy the code. Runs independently from the Build_and_Test job.
+  Deploy:
+    #Deploy job having its own GitHub Runner. Each Job runs independently on it own set of runners(Virtual M/Cs), isolated from other machines & Jobs.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -14,4 +34,8 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
       - name: Gradle Build
-        run: ./gradlew clean build
+        run: ./gradlew build
+      - name: Deploy
+        run: |
+              echo "Deploying your Application..."
+              echo "Application Deployed!"
