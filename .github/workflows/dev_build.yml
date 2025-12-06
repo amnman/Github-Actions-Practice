@@ -1,7 +1,7 @@
 name: Dev Build and Deploy
 on: push
 jobs:
-  Build_&_Test:
+  Build_and_Test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
