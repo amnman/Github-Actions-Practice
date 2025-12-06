@@ -1,0 +1,17 @@
+name: Dev Build and Deploy
+on: push
+jobs:
+  Build and Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/Checkout@v3
+      - name: Install Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+      - name: Gradle Build
+        run: ./gradlew clean build
