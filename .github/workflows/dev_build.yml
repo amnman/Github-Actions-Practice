@@ -21,6 +21,8 @@ jobs:
         run: ./gradlew clean build
   #Job 2 which is used to deploy the code. Runs independently from the Build_and_Test job.
   Deploy:
+    #Specifying the job that has to be completed before the Deploy Job can be completed.
+    needs: Build_and_Test
     #Deploy job having its own GitHub Runner. Each Job runs independently on it own set of runners(Virtual M/Cs), isolated from other machines & Jobs.
     runs-on: ubuntu-latest
     steps:
