@@ -1,5 +1,5 @@
 name: Dev Build and Deploy
-on: push
+on: [push,workflow_dispatch]
 jobs:
   #Job 1 which runs the gradle build and testcases in the project.
   Build_and_Test:
