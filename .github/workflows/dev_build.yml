@@ -1,5 +1,13 @@
 name: Dev Build and Deploy
-on: [push,workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+    #Any changes pushed to the file paths below mentioned will be skipped.
+    paths-ignore:
+      - ".github/**"
+  #workflow_dispatch has to be included in below manner when custom details are provided
+  workflow_dispatch:
 jobs:
   #Job 1 which runs the gradle build and testcases in the project.
   Build_and_Test:
