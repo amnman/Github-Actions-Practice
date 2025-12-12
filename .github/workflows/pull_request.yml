@@ -1,0 +1,13 @@
+name: Pull Request
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+jobs:
+  PR_Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build PR
+        run: echo "Building Pull Request"
