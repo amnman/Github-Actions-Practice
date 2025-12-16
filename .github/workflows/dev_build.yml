@@ -27,6 +27,11 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
       - name: Gradle Build
         run: ./gradlew clean build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GHA-Artifact
+          path: build/libs
   #Job 2 which is used to deploy the code. Runs independently from the Build_and_Test job.
   Deploy:
     #Specifying the job that has to be completed before the Deploy Job can be completed.
