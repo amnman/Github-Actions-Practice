@@ -55,7 +55,7 @@ jobs:
         run: ./gradlew build
       - name: Download Artifact
         #GitHub provided action to download the Job Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           #Name of the job artifact to be downloaded from Job Artifact Repository
           name: GHA-Artifact
