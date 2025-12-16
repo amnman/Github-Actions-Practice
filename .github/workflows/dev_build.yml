@@ -28,9 +28,12 @@ jobs:
       - name: Gradle Build
         run: ./gradlew clean build
       - name: Upload Artifact
+        #GitHub Provided action to upload the artifact
         uses: actions/upload-artifact@v4
         with:
+          #Name of the artifact folder
           name: GHA-Artifact
+          #File paths to be included in the Job Artifact
           path: build/libs
   #Job 2 which is used to deploy the code. Runs independently from the Build_and_Test job.
   Deploy:
@@ -50,6 +53,14 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
       - name: Gradle Build
         run: ./gradlew build
+      - name: Download Artifact
+        #GitHub provided action to download the Job Artifact
+        uses: actions/download-artifact@v3
+        with:
+          #Name of the job artifact to be downloaded from Job Artifact Repository
+          name: GHA-Artifact
+      - name: List File Contents
+        run: ls
       - name: Deploy
         run: |
               echo "Deploying your Application..."
