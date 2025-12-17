@@ -1,0 +1,26 @@
+name: Test Outputs Flow Between Jobs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Create_Message:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+    steps:
+      - name: Create Output 1
+        id: step1
+        run: echo "test=hello" >> "$GITHUB_OUTPUT"
+      - name: Create Output 2
+        id: step2
+        run: echo "test=world" >> "$GITHUB_OUTPUT"
+  Receive_Message:
+    runs-on: ubuntu-latest
+    needs: Create_Message
+    steps:
+      - name: Receive Message
+        run: |
+          echo "OUTPUT1: ${{ needs.step1.outputs.output1 }}"
+          echo "OUTPUT2: ${{ needs.step2.outputs.output2 }}"
