@@ -22,5 +22,5 @@ jobs:
     steps:
       - name: Receive Message
         run: |
-          echo "OUTPUT1: ${{ needs.step1.outputs.output1 }}"
-          echo "OUTPUT2: ${{ needs.step2.outputs.output2 }}"
+          echo "OUTPUT1: ${{ needs.Create_Message.outputs.output1 }}"
+          echo "OUTPUT2: ${{ needs.Create_Message.outputs.output2 }}"
