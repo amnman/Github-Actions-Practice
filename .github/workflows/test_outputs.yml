@@ -5,6 +5,7 @@ on:
 
 env:
   TEST_ENV: envVariable
+  #Secrets defined at the repository level
   USERNAME: ${{ secrets.USERNAME }}
   PASSWORD: ${{ secrets.PASSWORD }}
 jobs:
