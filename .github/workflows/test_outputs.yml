@@ -5,6 +5,9 @@ on:
 
 env:
   TEST_ENV: envVariable
+  #Secrets defined at the repository level
+  USERNAME: ${{ secrets.USERNAME }}
+  PASSWORD: ${{ secrets.PASSWORD }}
 jobs:
   Create_Message:
     env:
@@ -41,6 +44,7 @@ jobs:
           echo "TESTING JOB Specific Env Variable : ${{ env.MESSAGE1 }}"
   Matrix_message_job:
     runs-on: ubuntu-latest
+    needs: Receive_Message
     outputs:
       output_1: ${{ steps.gen_output.outputs.output_1 }}
       output_2: ${{ steps.gen_output.outputs.output_2 }}
@@ -63,3 +67,5 @@ jobs:
       - name: Receive Matrix Message
         run: |
           echo "${{ toJSON(needs.Matrix_message_job.outputs) }}"
+          echo "PRINTING USERNAME: $USERNAME"
+          echo "PRINTING PASSWORD: ${{ env.PASSWORD }} - Gets Masked"
