@@ -68,5 +68,6 @@ jobs:
       - name: Receive Matrix Message
         run: |
           echo "${{ toJSON(needs.Matrix_message_job.outputs) }}"
+          #Secrets pulled from the environment level secret values set for the repository
           echo "PRINTING USERNAME: $USERNAME"
           echo "PRINTING PASSWORD: ${{ env.PASSWORD }} - Gets Masked"
