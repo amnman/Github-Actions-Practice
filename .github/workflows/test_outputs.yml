@@ -60,6 +60,7 @@ jobs:
           version="${{ matrix.version }}"
           echo "output_${version}=Hello ${version}" >> "$GITHUB_OUTPUT"
   Matrix_receive_job:
+    environment: Testing
     runs-on: ubuntu-latest
     needs: Matrix_message_job
     steps:
