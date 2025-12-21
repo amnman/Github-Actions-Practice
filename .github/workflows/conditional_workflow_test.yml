@@ -13,11 +13,13 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
       - name: Setup Gradle
-        id: gradle-build
         uses: gradle/actions/setup-gradle@v5
       - name: Gradle Build
+        #Step Id to be used by other steps to access the step outcomes.
+        id: gradle-build
         run: ./gradlew build
       - name: Run on Failure
+        #Based on the outcome of the step with ID: gradle-build, the Run on Failure step runs else will be omitted.
         if: steps.gradle-build.outcome == 'failure'
         run: echo "Test Execution Failed! Entering Conditional Workflow Step"
   Deploy:
