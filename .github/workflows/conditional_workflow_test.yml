@@ -14,10 +14,10 @@ jobs:
           java-version: '21'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
-      - name: Gradle Build
+      - name: Run Test
         #Step Id to be used by other steps to access the step outcomes.
         id: gradle-build
-        run: ./gradlew build
+        run: ./gradlew run test
       - name: Run on Failure
         #Based on the outcome of the step with ID: gradle-build, the Run on Failure step runs else will be omitted.
         if: steps.gradle-build.outcome == 'failure'
