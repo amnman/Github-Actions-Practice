@@ -9,6 +9,7 @@ class GhaApplicationTests {
 
 	@Test
 	void contextLoads() {
+		throw new RuntimeException("Failing TestCase");
 	}
 
 }
