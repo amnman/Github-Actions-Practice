@@ -26,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
+        environment: Testing
         run: echo "Deploying...."
       - name: Run If Cancelled
         if: cancelled()
