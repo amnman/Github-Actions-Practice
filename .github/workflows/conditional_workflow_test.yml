@@ -38,12 +38,12 @@ jobs:
     needs: Deploy
     if: cancelled()
     steps:
-        name: Test Cancel
+      - name: Test Cancel
         run: echo "Cancelled() executed when workflow is cancelled"
   Always_Workflow:
     runs-on: ubuntu-latest
     needs: Deploy
     if: always()
     steps:
-      name: Test Cancel
-      run: echo "Always() executed even when workflow is cancelled/not cancelled"
+      - name: Test Cancel
+        run: echo "Always() executed even when workflow is cancelled/not cancelled"
