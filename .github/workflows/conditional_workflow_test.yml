@@ -24,9 +24,9 @@ jobs:
         run: echo "Test Execution Failed! Entering Conditional Workflow Step"
   Deploy:
     runs-on: ubuntu-latest
+    environment: Testing
     steps:
       - name: Deploy
-        environment: Testing
         run: echo "Deploying...."
       - name: Run If Cancelled
         if: cancelled()
