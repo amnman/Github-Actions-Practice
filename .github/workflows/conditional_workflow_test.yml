@@ -36,6 +36,7 @@ jobs:
   Cancel_Workflow:
     runs-on: ubuntu-latest
     needs: Deploy
+    #Runs the workflow when the deploy job is cancelled
     if: cancelled()
     steps:
       - name: Test Cancel
@@ -43,7 +44,8 @@ jobs:
   Always_Workflow:
     runs-on: ubuntu-latest
     needs: Deploy
+    #Runs the workflow irrespective of the workflow status.
     if: always()
     steps:
-      - name: Test Cancel
+      - name: Test Always
         run: echo "Always() executed even when workflow is cancelled/not cancelled"
