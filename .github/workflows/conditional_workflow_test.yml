@@ -20,10 +20,19 @@ jobs:
         run: ./gradlew run test
       - name: Run on Failure
         #Based on the outcome of the step with ID: gradle-build, the Run on Failure step runs else will be omitted.
-        if: failure() && steps.gradle-build.conclusion == 'failure'
+        if: failure() && steps.gradle-build.outcome == 'failure'
         run: echo "Test Execution Failed! Entering Conditional Workflow Step"
   Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
         run: echo "Deploying...."
+      - name: Run If Cancelled
+        if: cancelled()
+        run: echo "Workflow Run Cancelled!"
+      - name: Run If Success
+        if: success()
+        run: echo " Workflow executed successfully!!"
+      - name: Run Always
+        if: always()
+        run: echo "always() conditional function tested!!"
