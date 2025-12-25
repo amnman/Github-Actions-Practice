@@ -1,0 +1,29 @@
+name: Matrix Strategy
+
+on: workflow_dispatch
+
+jobs:
+  Matrix_Strategy:
+    strategy:
+      matrix:
+        os_type: [ubuntu-latest,windows-latest]
+        java_version: [8,11,17]
+        include:
+          - os_type: ubuntu-latest
+            java_version: 21
+        exclude:
+          - os_type: windows-latest
+            java_version: 8
+    runs-on: "${{ matrix.os_type }}"
+    steps:
+      - name: Checkout Action
+        uses: actions/Checkout@v3
+      - name: Install Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: "${{ matrix.java_version }}"
+          distribution: 'temurin'
+      - name: Gradle Setup
+        uses: gradle/actions/setup-gradle@v5
+      - name: Gradle Build
+        run: gradlew build
