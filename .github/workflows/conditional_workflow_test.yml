@@ -49,3 +49,10 @@ jobs:
     steps:
       - name: Test Always
         run: echo "Always() executed even when workflow is cancelled/not cancelled"
+  Failure_Workflow:
+    runs-on: ubuntu-latest
+    #Runs the workflow irrespective of the workflow status.
+    if: failure()
+    steps:
+      - name: Test Failure
+        run: echo "Failure() executed when the workflow executing fails!"
