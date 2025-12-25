@@ -51,6 +51,7 @@ jobs:
         run: echo "Always() executed even when workflow is cancelled/not cancelled"
   Failure_Workflow:
     runs-on: ubuntu-latest
+    needs: Build_and_Test
     #Runs the workflow irrespective of the workflow status.
     if: failure()
     steps:
