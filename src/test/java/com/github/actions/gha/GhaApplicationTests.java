@@ -9,7 +9,10 @@ class GhaApplicationTests {
 
 	@Test
 	void contextLoads() {
-		throw new RuntimeException("Failing TestCase");
+		/**
+		 * Uncomment to test the Failure Workflow Job
+		 * **/
+//		throw new RuntimeException("Failing TestCase");
 	}
 
 }
