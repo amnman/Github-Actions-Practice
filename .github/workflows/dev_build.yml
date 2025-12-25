@@ -13,6 +13,8 @@ jobs:
   Build_and_Test:
     #The GitHub Action doesn't run on the repository. It runs on the Virtual runner environment.
     runs-on: ubuntu-latest
+    outputs:
+      cache_status: ${{ steps.cache_dependency.outputs.cache-hit }}
     steps:
       - name: Checkout Code
         #Using Custom action for checking out the code to the GitHub Runner
@@ -64,6 +66,9 @@ jobs:
           java-version: '21'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v5
+      - name: Check Dependency Cached
+        if: ${{ needs.Build_and_Test.outputs.cache_status }} == 'true'
+        run: echo "Cache Fetched Successfully!!"
       - name: Cache Dependencies
         uses: actions/cache@v5
         with:
