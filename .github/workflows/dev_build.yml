@@ -90,7 +90,7 @@ jobs:
           name: GHA-Artifact
       - name: List File Contents
         run: ls
-      - name: Deploy
-        run: |
-              echo "Deploying your Application..."
-              echo "Application Deployed!"
+  #Testing the reusable workflow
+  Artifact_Deploy:
+    needs: Deploy
+    uses: ./.github/workflows/reusable_workflow.yml
