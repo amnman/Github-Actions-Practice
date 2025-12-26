@@ -25,13 +25,13 @@ on:
       result:
         description: Result from the Reusable Workflow
         #jobs context is specific for reusable workflow to access the output from the reusable workflow.
-        value: ${{ jobs.Artifactory_Deployment.outputs.reusable-result }}
+        value: ${{ jobs.Artifactory_Deployment.outputs.reusable_result }}
 jobs:
   Artifactory_Deployment:
     runs-on: ubuntu-latest
     #Initializing value to the output variable from the jobs
     outputs:
-      reusable-result: ${{ steps.reusable_step.outputs.reusable-result }}
+      reusable_result: ${{ steps.reusable_step.outputs.reusable_result }}
     steps:
       - name: Download Artifact
         #GitHub provided action to download the Job Artifact
@@ -52,7 +52,7 @@ jobs:
       - name: Reusable Output
         id: reusable_step
         run: |
-          echo "reusable-result=Hello->Reusable Workflow >> $GITHUB_OUTPUT"
+          echo "reusable_result=Hello->Reusable Workflow >> $GITHUB_OUTPUT"
       - name: Logging Output
         run: |
-          echo "Inside Reusable-Workflow Output: ${{ steps.reusable_step.outputs.reusable-result }}"
+          echo "Inside Reusable-Workflow Output: ${{ steps.reusable_step.outputs.reusable_result }}"
