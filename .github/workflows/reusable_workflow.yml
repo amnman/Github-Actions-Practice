@@ -2,7 +2,7 @@ name: Reusable Deploy
 #workflow_call signifies that the workflow has to be executed only when explicitly invoked.
 on: workflow_call
 jobs:
-  Deploy:
+  Artifactory_Deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy
