@@ -1,10 +1,31 @@
 name: Reusable Deploy
 #workflow_call signifies that the workflow has to be executed only when explicitly invoked.
-on: workflow_call
+on:
+  workflow_call:
+    #Input data to be provided from the calling workflow.
+    inputs:
+      #input variable name
+      file-path:
+        #Input variable description
+        description: 'artifactory file path'
+        #Specifies if the input value is mandatory or not
+        required: true
+        #Default value to be provided in case value if not provided
+        default: GHA-Artifact
+        #Variable data-type
+        type: string
 jobs:
   Artifactory_Deployment:
     runs-on: ubuntu-latest
     steps:
+      - name: Download Artifact
+        #GitHub provided action to download the Job Artifact
+        uses: actions/download-artifact@v4
+        with:
+          #Name of the job artifact to be downloaded from Job Artifact Repository
+          name: ${{ inputs.file-path }}
+      - name: List File Contents
+        run: ls
       - name: Deploy
         run: |
           echo "Deploying your Application..."
