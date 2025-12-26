@@ -92,5 +92,5 @@ jobs:
     with:
       file-path: GHA-Artifact
     secrets:
-      username: "${{ env.USERNAME }}"
-      password: '$PASSWORD'
+      username: ${{ env.USERNAME }}
+      password: $PASSWORD
