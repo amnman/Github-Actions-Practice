@@ -88,3 +88,5 @@ jobs:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
       file-path: GHA-Artifact
+      username: ${{ secrets.USERNAME }}
+      password: ${{ secrets.PASSWORD }}
