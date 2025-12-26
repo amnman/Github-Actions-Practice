@@ -8,6 +8,9 @@ on:
       - ".github/**"
   #workflow_dispatch has to be included in below manner when custom details are provided
   workflow_dispatch:
+env:
+  USERNAME: ${{ secrets.USERNAME }}
+  PASSWORD: ${{ secrets.PASSWORD }}
 jobs:
   #Job 1 which runs the gradle build and testcases in the project.
   Build_and_Test:
@@ -88,5 +91,5 @@ jobs:
     uses: ./.github/workflows/reusable_workflow.yml
     with:
       file-path: GHA-Artifact
-      username: ${{ secrets.USERNAME }}
-      password: ${{ secrets.PASSWORD }}
+      username: ${{ env.USERNAME }}
+      password: $PASSWORD
