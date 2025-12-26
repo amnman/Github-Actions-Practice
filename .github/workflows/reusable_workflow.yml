@@ -21,9 +21,17 @@ on:
       password:
         #Note that the default value cannot be provided for secrets.
         required: false
+    outputs:
+      result:
+        description: Result from the Reusable Workflow
+        #jobs context is specific for reusable workflow to access the output from the reusable workflow.
+        value: ${{ jobs.Artifactory_Deployment.outputs.reusable-result }}
 jobs:
   Artifactory_Deployment:
     runs-on: ubuntu-latest
+    #Initializing value to the output variable from the jobs
+    outputs:
+      reusable-result: ${{ steps.reusable_step.outputs.reusable-result }}
     steps:
       - name: Download Artifact
         #GitHub provided action to download the Job Artifact
@@ -41,3 +49,10 @@ jobs:
         run: |
           echo "USERNAME: ${{ secrets.username }}"
           echo "PASSWORD: ${{ secrets.password }}"
+      - name: Reusable Output
+        id: reusable_step
+        run: |
+          echo "reusable-result=Hello->Reusable Workflow >> $GITHUB_OUTPUT"
+      - name: Logging Output
+        run: |
+          echo "Inside Reusable-Workflow Output: ${{ steps.reusable_step.outputs.reusable-result }}"

@@ -94,3 +94,11 @@ jobs:
     secrets:
       username: ${{ secrets.USERNAME }}
       password: ${{ secrets.PASSWORD }}
+  Print_Reusable_Output:
+    needs: Artifact_Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Reusable Workflow Output
+        run: |
+          echo "Printing Reusable Workflow Output ........."
+          echo "Inside Dev_Build_and_Deploy Output: ${{ needs.Artifact_Deploy.outputs.result }}
