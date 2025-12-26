@@ -52,7 +52,7 @@ jobs:
       - name: Reusable Output
         id: reusable_step
         run: |
-          echo "reusable_result=Hello->Reusable Workflow >> $GITHUB_OUTPUT"
+          echo "reusable_result=Hello->Reusable Workflow" >> "$GITHUB_OUTPUT"
       - name: Logging Output
         run: |
           echo "Inside Reusable-Workflow Output: ${{ steps.reusable_step.outputs.reusable_result }}"
