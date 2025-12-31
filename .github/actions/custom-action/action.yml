@@ -1,5 +1,9 @@
 name: 'Gradle Build & Cache Dependencies'
 description: 'Build the Project, get the Dependencies & Cache them'
+outputs:
+  cache_status:
+    description: "cache hit status"
+    value: ${{steps.cache_status.outputs.cache-hit}}
 runs:
   using: 'composite'
   steps:
@@ -13,6 +17,7 @@ runs:
       uses: gradle/actions/setup-gradle@v5
     - name: Cache Dependencies
       uses: actions/cache@v5
+      id: cache_status
       with:
         path: |
           ~/.gradle/caches
