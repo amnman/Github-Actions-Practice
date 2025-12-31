@@ -2,6 +2,7 @@ name: Custom Action Test Workflow
 on: workflow_dispatch
 jobs:
   Run_Custom_Action:
+    runs-on: ubuntu-latest
     steps:
       - name: Run Custom Action
         #Adding the relative path to the custom action file location. If the action is stored at the repository level directly the repository path can be provided.
