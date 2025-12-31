@@ -4,6 +4,9 @@ jobs:
   Run_Custom_Action:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Action
+        #Checkout action is not included is not added in the Custom action as the code has to be checked out because the custom action is added internally inside the repository and not maintained separately
+        uses: actions/Checkout@v3
       - name: Run Custom Action
         #Adding the relative path to the custom action file location. If the action is stored at the repository level directly the repository path can be provided.
         uses: ./.github/actions/custom-action
