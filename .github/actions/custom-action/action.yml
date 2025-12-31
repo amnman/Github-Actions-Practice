@@ -1,0 +1,26 @@
+name: 'Gradle Build & Cache Dependencies'
+description: 'Build the Project, get the Dependencies & Cache them'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Java
+      #Installing the specified version & distribution of Java in the runner environment
+      uses: actions/setup-java@v5
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v5
+    - name: Cache Dependencies
+      uses: actions/cache@v5
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{runner.os}}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+    - name: Gradle Build
+      run: ./gradlew clean build
+      #Which Shell to be used, to be added when run is used in composite action.
+      shell: bash

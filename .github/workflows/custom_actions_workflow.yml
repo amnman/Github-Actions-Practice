@@ -1,0 +1,12 @@
+name: Custom Action Test Workflow
+on: workflow_dispatch
+jobs:
+  Run_Custom_Action:
+    steps:
+      - name: Run Custom Action
+        #Adding the relative path to the custom action file location. If the action is stored at the repository level directly the repository path can be provided.
+        uses: ./.github/actions/custom-action
+        id: cache_dependency
+      - name: Log Cache Dependency Status
+        run: |
+          echo "Cache Dependency Status: ${{steps.cache_dependency.outputs.cache-hit}}"
