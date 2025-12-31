@@ -13,4 +13,5 @@ jobs:
         id: cache_dependency
       - name: Log Cache Dependency Status
         run: |
-          echo "Cache Dependency Status: ${{steps.cache_dependency.outputs.cache-hit}}"
+          status="${{steps.cache_dependency.outputs.cache-hit}}" 
+          echo "Cache Dependency Status: ${status}"
