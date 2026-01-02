@@ -35,7 +35,7 @@ runs:
       if: steps.cache_status.outputs.cache-hit != 'true' || inputs.caching != 'true'
       run: |
         ./gradlew clean build
-        echo "Cache Hit Status: ${{steps.cache_status.outputs.cache-hit}}
+        echo "Cache Hit Status: ${{steps.cache_status.outputs.cache-hit}}"
         echo "Cache  Enabled: ${{inputs.caching}}"
       #Which Shell to be used, to be added when run is used in composite action.
       shell: bash
