@@ -11,6 +11,8 @@ jobs:
         #Adding the relative path to the custom action file location. If the action is stored at the repository level directly the repository path can be provided.
         uses: ./.github/actions/custom-action
         id: cache_dependency
+        with:
+          caching: 'false'
       - name: Log Cache Dependency Status
         run: |
           status="${{steps.cache_dependency.outputs.cache_status}}" 
