@@ -1,5 +1,10 @@
 name: 'Gradle Build & Cache Dependencies'
 description: 'Build the Project, get the Dependencies & Cache them'
+inputs:
+  caching:
+    description: 'disable or enable caching'
+    required: false
+    default: 'true'
 outputs:
   cache_status:
     description: "cache hit status"
@@ -17,6 +22,7 @@ runs:
       uses: gradle/actions/setup-gradle@v5
     - name: Cache Dependencies
       uses: actions/cache@v5
+      if: ${{ inputs.caching }} == 'true'
       id: cache_status
       with:
         path: |
@@ -26,6 +32,10 @@ runs:
         restore-keys: |
           ${{ runner.os }}-gradle-
     - name: Gradle Build
-      run: ./gradlew clean build
+      if: steps.cache_status.outputs.cache-hit != 'true' || inputs.caching != 'true'
+      run: |
+        ./gradlew clean build
+        echo "Cache Hit Status: ${{steps.cache_status.outputs.cache-hit}}
+        echo "Cache  Enabled: ${{inputs.caching}}"
       #Which Shell to be used, to be added when run is used in composite action.
       shell: bash
