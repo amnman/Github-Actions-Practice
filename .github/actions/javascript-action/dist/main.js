@@ -31531,6 +31531,8 @@ let run=()=> {
     let user = coreExports.getInput('user',{required:true});
     coreExports.info(`User: ${user}`);
     coreExports.setOutput('response','Hello Maneesh!!');
+    //Save User value for Post Action
+    coreExports.saveState('user',user);
 };
 
 run();

@@ -31527,7 +31527,17 @@ requireGithub();
 requireExec();
 
 let run=()=> {
+    try{
     coreExports.info("JavaScript Post-Action Triggered!! Worfklow Complete");
+    //getInput might not be working in the same manner as in Main workflow hence using getState to fetch the input.
+    let user =  coreExports.getState('user');
+    coreExports.info(`Bye ${user} !!`);
+
+    let test = coreExports.getInput('user',{required:true});
+    coreExports.info(`${user}.........`);
+    }catch (error) {
+            coreExports.error(`Error in post action: ${error.message}`);
+    }
 };
 
 run();

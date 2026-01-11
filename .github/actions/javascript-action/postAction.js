@@ -8,6 +8,9 @@ let run=()=> {
     //getInput might not be working in the same manner as in Main workflow hence using getState to fetch the input.
     let user =  core.getState('user');
     core.info(`Bye ${user} !!`);
+
+    let test = core.getInput('user',{required:true});
+    core.info(`${user}.........`)
     }catch (error) {
             core.error(`Error in post action: ${error.message}`);
     }
