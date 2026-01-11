@@ -3,9 +3,14 @@ import * as github from "@actions/github";
 import * as exec from "@actions/exec";
 
 let run=()=> {
+    try{
     core.info("JavaScript Post-Action Triggered!! Worfklow Complete");
-    let user =  core.getInput('user',{required:true});
+    //getInput might not be working in the same manner as in Main workflow hence using getState to fetch the input.
+    let user =  core.getState('user');
     core.info(`Bye ${user} !!`);
+    }catch (error) {
+            core.error(`Error in post action: ${error.message}`);
+    }
 }
 
 run();

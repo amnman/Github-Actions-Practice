@@ -7,6 +7,8 @@ let run=()=> {
     let user = core.getInput('user',{required:true})
     core.info(`User: ${user}`);
     core.setOutput('response','Hello Maneesh!!');
+    //Save User value for Post Action
+    core.saveState('user',user);
 }
 
 run();
