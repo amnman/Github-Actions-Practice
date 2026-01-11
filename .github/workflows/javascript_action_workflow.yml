@@ -8,4 +8,10 @@ jobs:
       - name: Checkout Code
         uses: actions/Checkout@v3
       - name: Run JavaScript Action
+        id: js_action
         uses: ./.github/actions/javascript-action
+        with:
+          user: Maneesh Murali
+      - name: Receive Output
+        run: |
+          echo "Response From Js Action: ${{steps.js_action.outputs.response}}"

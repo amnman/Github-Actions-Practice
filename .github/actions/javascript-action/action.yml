@@ -1,8 +1,19 @@
 name: JavaScript Action
 description: 'JavaScript Custom Action to run the javascript files'
-
+inputs:
+  user:
+    description: 'Name of the User Triggering the Workflow'
+    required: true
+    default: Maneesh
+outputs:
+  response:
+    #Here, Output value is not set as the value is directly taken care by the javascript file.
+    description: 'Response from the Javascript File'
 runs:
   using: "node20"
-  #  pre: 'preAction.js'
+  #Js Script to be executed before execution of main workflow
+  pre: 'preAction.js'
+  #Js Script which contains the main workflow logic to be executed
   main: 'main.js'
-#  post: 'postAction.js'
+  #Js Script to be executed after execution of main workflow
+  post: 'postAction.js'
