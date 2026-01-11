@@ -31527,11 +31527,8 @@ requireGithub();
 requireExec();
 
 let run=()=> {
-    coreExports.info("JavaScript Action Triggered!!");
-    let user = coreExports.getInput('user',{required:true});
-    coreExports.info(`User: ${user}`);
-    coreExports.setOutput('response','Hello Maneesh!!');
+    coreExports.info("JavaScript Post-Action Triggered!! Worfklow Complete");
 };
 
 run();
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=postAction.js.map
