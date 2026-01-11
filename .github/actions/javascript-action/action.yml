@@ -1,0 +1,8 @@
+name: JavaScript Action
+description: 'JavaScript Custom Action to run the javascript files'
+
+runs:
+  using: "node20"
+#  pre: 'preAction.js'
+  main: 'main.js'
+#  post: 'postAction.js'

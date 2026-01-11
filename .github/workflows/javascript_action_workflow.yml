@@ -1,0 +1,11 @@
+name: Testing JavaScript Action
+on: workflow_dispatch
+
+jobs:
+  run_javascript_action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/Checkout@v3
+      - name: Run JavaScript Action
+        uses: .github/actions/javascript-action
