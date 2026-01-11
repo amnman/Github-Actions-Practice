@@ -2,7 +2,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 
-export default {
+export default [
+  {
   // INPUT OPTIONS
   input: 'main.js',
   // Specifies the entry point of your application
@@ -11,7 +12,7 @@ export default {
 
   // OUTPUT OPTIONS
   output: {
-    file: 'dist/index.js',
+    file: 'dist/main.js',
         // The destination file where the bundled code will be written
         // All your code and dependencies will be combined into this single file
     format: 'cjs',
@@ -44,4 +45,13 @@ export default {
         // Many npm packages still use CommonJS
         // This plugin allows Rollup to bundle them properly
   ]
-};
+  },{
+        input: 'postAction.js',
+        output: {
+          file: 'dist/postAction.js',
+          format: 'cjs',
+          sourcemap: true
+        },
+        plugins: [json(), resolve({ preferBuiltins: true }), commonjs()]
+      }
+];
