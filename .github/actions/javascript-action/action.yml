@@ -14,6 +14,6 @@ runs:
   #Js Script to be executed before execution of main workflow
   pre: 'preAction.js'
   #Js Script which contains the main workflow logic to be executed
-  main: 'main.js'
+  main: 'dist/index.js'
   #Js Script to be executed after execution of main workflow
   post: 'postAction.js'
